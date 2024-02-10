@@ -1,0 +1,1 @@
+let userInput = prompt ("Pick a number: 0 for Rock, 1 is Paper, 2 is Scisors",'' );

@@ -34,11 +34,11 @@ function paperChoice(comOptions){
     const comChoice = Math.floor(Math.random()*comOptions.length);
 
     if (comOptions[comChoice] === 'Rock'){
-        let result = 'You win';
+        let result = 'You Win';
        return result;
    }
    else if (comOptions[comChoice] === 'Paper'){
-       let result = 'Paper'
+       let result = 'Its a Draw'
        return result;
    }
    else if (comOptions[comChoice] === 'Scissors'){
@@ -51,14 +51,54 @@ function paperChoice(comOptions){
    }
 }
 
+function scissorsChoice (comOptions){
+    const comChoice = Math.floor(Math.random()*comOptions.length);
+
+    if (comOptions[comChoice] === 'Rock'){
+        let result = 'You Lose';
+       return result;
+   }
+   else if (comOptions[comChoice] === 'Paper'){
+       let result = 'You Win'
+       return result;
+   }
+   else if (comOptions[comChoice] === 'Scissors'){
+       let result = 'Its a Draw';
+       return result;
+   }
+   else {
+       return "Wrong Choice";
+    
+   }
+}
+
+
+
 const rock = document.querySelector('.rock');
 const paper= document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
+const yourScoreDiv = document.createElement ('div');
+const comScoreDiv = document.createElement('div');
+yourScoreDiv.style.margin ='20px';
+comScoreDiv.style.margin ='20px';
+
 
 rock.addEventListener('click', () => {
-    console.log(rockChoice(comOptions));
+
+    yourScoreDiv.textContent = rockChoice(comOptions);
+    const body = document.querySelector('body');
+    body.appendChild(yourScoreDiv);
 });
 
 paper.addEventListener('click',() => {
-    console.log(paperChoice(comOptions));
-})
+    yourScoreDiv.textContent = rockChoice(comOptions);
+    const body = document.querySelector('body');
+    body.appendChild(yourScoreDiv);
+});
+
+scissors.addEventListener('click',()=> {
+    yourScoreDiv.textContent = rockChoice(comOptions);
+    const body = document.querySelector('body');
+    body.appendChild(yourScoreDiv);
+});
+

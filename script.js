@@ -4,6 +4,8 @@
 
 
 const comOptions = ['Rock','Paper','Scissors'];
+let playerScore = 0;
+let comScore = 0;
 
 
 
@@ -53,12 +55,17 @@ function paperChoice(comOptions){
 
 function scissorsChoice (comOptions){
     const comChoice = Math.floor(Math.random()*comOptions.length);
+    return comChoice;
+}
+function roundPlay ( ){
 
     if (comOptions[comChoice] === 'Rock'){
+        comScore++;
         let result = 'You Lose';
        return result;
    }
    else if (comOptions[comChoice] === 'Paper'){
+       playerScore++;
        let result = 'You Win'
        return result;
    }
@@ -77,8 +84,7 @@ function scissorsChoice (comOptions){
 const rock = document.querySelector('.rock');
 const paper= document.querySelector('.paper');
 const scissors = document.querySelector('.scissors');
-const yourScoreDiv = document.createElement ('div');
-const comScoreDiv = document.createElement('div');
+const yourScoreDiv = document.createElement ('div');;
 yourScoreDiv.style.margin ='20px';
 comScoreDiv.style.margin ='20px';
 

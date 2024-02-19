@@ -2,27 +2,42 @@
 //1 is Paper
 //2 is Scissors
 
-let userInput = parseInt(prompt ("Pick a number: 0 for Rock, 1 is Paper, 2 is Scisors",'' ));
 
-let comChoice = Math.floor(Math.random()*3);
+const comOptions = ['Rock','Paper','Scissors'];
 
-function winner (userInput, comChoice ){
-    if ( userInput === comChoice){
-        return "draw";
+
+
+//const comSelection = comOptions[comChoice];
+
+
+function rockChoice (comOptions) {
+    const comChoice = Math.floor(Math.random() *comOptions.length);
+
+    if (comOptions[comChoice] === 'Rock'){
+         let result = 'draw';
+        return result;
     }
-    else if (( userInput === 0 && comChoice === 1 )|| 
-    (userInput === 1 && comChoice === 2) ||
-    (userInput=== 2 && comChoice ===0))
+    else if (comOptions[comChoice] === 'Paper'){
+        let result = 'You Lose'
+        return result;
+    }
+    else if (comOptions[comChoice] === 'Scissors'){
+        let result = 'You Win';
+        return result;
+    }
+    else {
+        return "Wrong Choice";
+    }
     
-    {
-        return "You lose";
-    }
+    
 
-    else {return "You Win"};
 }
 
-function result (){
-   return winner(userInput,comChoice);
-}
 
-console.log (result());
+const rock = document.querySelector('.rock');
+const paper= document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+
+rock.addEventListener('click', () => {
+    console.log(rockChoice(comOptions));
+});

@@ -1,110 +1,56 @@
-//0 is Rock
-//1 is Paper
-//2 is Scissors
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const resultDisplay = document.getElementById('result');
+        const scoreDisplay = document.getElementById('score');
 
+        let playerScore = 0;
+        let computerScore = 0;
 
-const comOptions = ['Rock','Paper','Scissors'];
-let playerScore = 0;
-let comScore = 0;
+        function computerPlay() {
+            const options = ['Rock', 'Paper', 'Scissors'];
+            const randomIndex = Math.floor(Math.random() * options.length);
+            return options[randomIndex];
+        }
 
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                return 'It\'s a draw!';
+            } else if (
+                (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
+                (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+                (playerSelection === 'Scissors' && computerSelection === 'Paper')
+            ) {
+                playerScore++;
+                return 'You win this round!';
+            } else {
+                computerScore++;
+                return 'You lose this round!';
+            }
+        }
 
+        function updateScore() {
+            scoreDisplay.textContent = `Player: ${playerScore}, Computer: ${computerScore}`;
+        }
 
-//const comSelection = comOptions[comChoice];
+        function announceWinner() {
+            if (playerScore === 5) {
+                resultDisplay.textContent = 'Congratulations! You are the winner!';
+            } else if (computerScore === 5) {
+                resultDisplay.textContent = 'Computer wins! Better luck next time.';
+            }
+        }
 
+        buttons.forEach(button => {
+            button.addEventListener('click', function () {
+                const playerSelection = this.textContent;
+                const computerSelection = computerPlay();
+                const roundResult = playRound(playerSelection, computerSelection);
 
-function rockChoice (comOptions) {
-    const comChoice = Math.floor(Math.random() *comOptions.length);
-
-    if (comOptions[comChoice] === 'Rock'){
-         let result = 'draw';
-        return result;
-    }
-    else if (comOptions[comChoice] === 'Paper'){
-        let result = 'You Lose'
-        return result;
-    }
-    else if (comOptions[comChoice] === 'Scissors'){
-        let result = 'You Win';
-        return result;
-    }
-    else {
-        return "Wrong Choice";
-    }
-}
-
-function paperChoice(comOptions){
-    const comChoice = Math.floor(Math.random()*comOptions.length);
-
-    if (comOptions[comChoice] === 'Rock'){
-        let result = 'You Win';
-       return result;
-   }
-   else if (comOptions[comChoice] === 'Paper'){
-       let result = 'Its a Draw'
-       return result;
-   }
-   else if (comOptions[comChoice] === 'Scissors'){
-       let result = 'You Lose';
-       return result;
-   }
-   else {
-       return "Wrong Choice";
-    
-   }
-}
-
-function scissorsChoice (comOptions){
-    const comChoice = Math.floor(Math.random()*comOptions.length);
-    return comChoice;
-}
-function roundPlay ( ){
-
-    if (comOptions[comChoice] === 'Rock'){
-        comScore++;
-        let result = 'You Lose';
-       return result;
-   }
-   else if (comOptions[comChoice] === 'Paper'){
-       playerScore++;
-       let result = 'You Win'
-       return result;
-   }
-   else if (comOptions[comChoice] === 'Scissors'){
-       let result = 'Its a Draw';
-       return result;
-   }
-   else {
-       return "Wrong Choice";
-    
-   }
-}
-
-
-
-const rock = document.querySelector('.rock');
-const paper= document.querySelector('.paper');
-const scissors = document.querySelector('.scissors');
-const yourScoreDiv = document.createElement ('div');;
-yourScoreDiv.style.margin ='20px';
-comScoreDiv.style.margin ='20px';
-
-
-rock.addEventListener('click', () => {
-
-    yourScoreDiv.textContent = rockChoice(comOptions);
-    const body = document.querySelector('body');
-    body.appendChild(yourScoreDiv);
-});
-
-paper.addEventListener('click',() => {
-    yourScoreDiv.textContent = rockChoice(comOptions);
-    const body = document.querySelector('body');
-    body.appendChild(yourScoreDiv);
-});
-
-scissors.addEventListener('click',()=> {
-    yourScoreDiv.textContent = rockChoice(comOptions);
-    const body = document.querySelector('body');
-    body.appendChild(yourScoreDiv);
-});
-
+                resultDisplay.textContent = roundResult;
+                updateScore();
+                announceWinner();
+            });
+        });
+    </script>
+</body>
+</html>

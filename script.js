@@ -31,3 +31,10 @@ else {
 }
 }
 
+
+function updateScore (){
+ score.textContent = `Player Score : ${playerScore}. Computer Score : ${comScore}`;
+ //const body = document.querySelector('body')
+ //body.appendChild(score);
+}
+

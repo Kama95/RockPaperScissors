@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll ('button');
 const score = document.querySelector ('div');
 const body = document.querySelector('body');
+const resultDis= document.querySelector('.results');
 
 let playerScore = 0;
 let comScore = 0;
@@ -41,9 +42,9 @@ function updateScore (){
 
 function winner (){
     if (playerScore === 5 ){
-        return "You, Player is the winner";
+        resultDis.textContent = "You, Player is the winner";
     }else if(comScore === 5) {
-        return "Computer has won this game"
+        resultDis.textContent= "Computer has won this game";
 }
 }
 
@@ -53,7 +54,10 @@ buttons.forEach(button => {
         console.log (playerSelection);
         const computerSelection = computerPlay();
         console.log (computerSelection); 
-        score.textContent = playRound(playerSelection, computerSelection);
+        const roundResult = playRound(playerSelection, computerSelection);
+         
+        resultDis.textContent = roundResult;
+
         updateScore();
         winner();
     }

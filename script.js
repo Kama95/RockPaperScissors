@@ -50,7 +50,9 @@ function winner (){
 buttons.forEach(button => { 
     button.addEventListener('click', ()=>{
         const playerSelection = button.textContent;
-        const computerSelection = computerPlay(); 
+        console.log (playerSelection);
+        const computerSelection = computerPlay();
+        console.log (computerSelection); 
         score.textContent = playRound(playerSelection, computerSelection);
         updateScore();
         winner();

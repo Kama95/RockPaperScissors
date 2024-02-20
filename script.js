@@ -38,3 +38,10 @@ function updateScore (){
  //body.appendChild(score);
 }
 
+function winner (){
+    if (playerScore === 5 ){
+        return "You, Player is the winner";
+    }else if(comScore === 5) {
+        return "Computer has won this game"
+}
+}

@@ -1,5 +1,7 @@
-const buttons = document.querySelector ('button');
+const buttons = document.querySelectorAll ('button');
 const score = document.querySelector ('div');
+const body = document.querySelector('body');
+const displayResult = document.querySelector('.result');
 
 let playerScore = 0;
 let comScore = 0;
@@ -40,8 +42,24 @@ function updateScore (){
 
 function winner (){
     if (playerScore === 5 ){
-        return "You, Player is the winner";
+        displayResult.textContent= "You, Player is the winner";
     }else if(comScore === 5) {
-        return "Computer has won this game"
+        displayResult.textContent= "Computer has won this game";
 }
 }
+
+buttons.forEach(button => { 
+    button.addEventListener('click', ()=>{
+        const playerSelection = button.textContent;
+        const computerSelection = computerPlay(); 
+        const roundResult = playRound(playerSelection, computerSelection);
+          
+        displayResult.textContent = roundResult;
+
+        updateScore();
+        winner();
+    }
+
+    )
+    
+});
